@@ -1,6 +1,11 @@
 library(ggplot2)
 library(shiny)
 library(shinydashboard)
+library(rsconnect)
+
+## Lendo o Arquivo dados.csv
+
+dados <- read.csv2(file = "data/dados.csv")
 
 server <- function(input, output) {
   
@@ -49,8 +54,16 @@ server <- function(input, output) {
     summary(dados[,varInput()])
   })
   
+  tabela1Out <- reactive({
+    if(input$escolhaTable == "reais"){
+      DT::datatable(as.data.frame(dados[,varInput()]))
+    }else{
+      DT::datatable(as.data.frame(table(dados[,varInput()])))  
+    }
+  })
+  
   output$tabela1 <- DT::renderDataTable({
-    DT::datatable(as.data.frame(table(dados[,varInput()])))
+    dataTabela <- tabela1Out()
   })
   
   #Duas variaveis

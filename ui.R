@@ -1,6 +1,8 @@
 library(ggplot2)
 library(shiny)
 library(shinydashboard)
+library(rsconnect)
+
 
 dashboardPage(
 
@@ -49,6 +51,11 @@ dashboardPage(
                                               verbatimTextOutput("sumario2"))),
                     tabPanel("Tabela",
                              conditionalPanel("input.qtdVar == 1",
+                                              radioButtons("escolhaTable","Apresentação",
+                                                           choices = c("Frequencia" = "freq",
+                                                                       "Dados Reais" = "reais"),selected = "freq",
+                                                           inline = TRUE)
+                                              ,
                                               DT::dataTableOutput("tabela1")),
                              conditionalPanel("input.qtdVar == 2",
                                               DT::dataTableOutput("tabela2")))
