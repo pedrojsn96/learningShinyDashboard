@@ -17,17 +17,13 @@ server <- function(input, output) {
     }
   })
   
-  #Ordenação crescente
-  #reorder_size <- function(x) {
-   # factor(x, levels = names(sort(table(x))))
-  #}
   
   grafico1Plot <- reactive({
     if(input$qtdVar == 1){
       if(input$grafico1 == "barras"){
-        p <- ggplot(data = dados, aes(x=dados[,varInput()]))
+        p <- ggplot(data = dados, aes(x = dados[,varInput()]))
         print(
-          p + geom_histogram(alpha =.4, fill ="blue", color="black", binwidth=.5) + labs(title=varInput(), x="Numeros", y="Frequencia") 
+          p +geom_histogram(alpha =.4, fill ="blue", color="black", binwidth=.5) + labs(title=varInput(), x="Numeros", y="Frequencia") 
           )
       }
       if(input$grafico1 == "pizza"){
