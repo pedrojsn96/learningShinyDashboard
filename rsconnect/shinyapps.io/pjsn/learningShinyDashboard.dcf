@@ -2,6 +2,6 @@ name: learningShinyDashboard
 account: pjsn
 server: shinyapps.io
 appId: 119819
-bundleId: 530587
+bundleId: 530595
 url: https://pjsn.shinyapps.io/learningShinyDashboard/
-when: 1471020897.10627
+when: 1471021774.78259

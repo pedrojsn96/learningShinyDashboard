@@ -50,12 +50,11 @@ dashboardPage(
                              conditionalPanel("input.qtdVar == 2",
                                               verbatimTextOutput("sumario2"))),
                     tabPanel("Tabela",
+                             radioButtons("escolhaTable","Apresentação",
+                                          choices = c("Frequencia" = "freq",
+                                                      "Dados Reais" = "reais"),selected = "freq",
+                                          inline = TRUE),
                              conditionalPanel("input.qtdVar == 1",
-                                              radioButtons("escolhaTable","Apresentação",
-                                                           choices = c("Frequencia" = "freq",
-                                                                       "Dados Reais" = "reais"),selected = "freq",
-                                                           inline = TRUE)
-                                              ,
                                               DT::dataTableOutput("tabela1")),
                              conditionalPanel("input.qtdVar == 2",
                                               DT::dataTableOutput("tabela2")))

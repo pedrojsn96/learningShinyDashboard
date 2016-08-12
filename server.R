@@ -99,7 +99,15 @@ server <- function(input, output) {
     summary(dados[,c(varXInput(),varYInput())])
   })
   
+  tabela2Out <- reactive({
+    if(input$escolhaTable == "reais"){
+      DT::datatable(as.data.frame(dados[,c(varXInput(),varYInput())]))
+    }else{
+      DT::datatable(as.data.frame(table(dados[,c(varXInput(),varYInput())])))
+    }
+  })
+  
   output$tabela2 <- DT::renderDataTable({
-    DT::datatable(as.data.frame(table(dados[,c(varXInput(),varYInput())])))
+    dataTabela2 <- tabela2Out()
   })
 }
