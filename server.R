@@ -32,6 +32,12 @@ server <- function(input, output) {
           pie + coord_polar(theta = "y") + xlab("") + ylab("")+labs(title=varInput(), fill="Lengenda")
         )
       }
+      if(input$grafico1 == "pontos"){
+        pontos <- ggplot(data =  data.frame(table(dados[,varInput()]))) 
+        print(
+          pontos + geom_point(mapping = aes(x = Var1, y = Freq,colour= Var1),  size=5)
+        )
+      }
     }
   })
   
@@ -58,6 +64,7 @@ server <- function(input, output) {
       return(input$variableY)
     }
   })
+  
   
   
   output$sumario2 <- renderPrint({
