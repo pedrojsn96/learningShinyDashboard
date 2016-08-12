@@ -52,7 +52,9 @@ server <- function(input, output) {
   output$tabela1 <- DT::renderDataTable({
     DT::datatable(as.data.frame(table(dados[,varInput()])))
   })
+  
   #Duas variaveis
+  
   varXInput <- reactive({
     if(input$qtdVar == 2){
       return(input$variableX)
@@ -65,7 +67,20 @@ server <- function(input, output) {
     }
   })
   
+  grafico2Plot <- reactive({
+    if(input$qtdVar == 2){
+      if(input$grafico2 == "pontos"){
+        pontos2 <- ggplot(dados,aes(x = dados[,varXInput()], y = dados[,varYInput()],colour=dados[,varXInput()])) 
+        print(
+          pontos2 + geom_point(size = 4) + labs(x=varXInput(), y=varYInput())
+        )
+      }
+    }
+  })
   
+  output$grafico2Out <- renderPlot({
+    data2 <- grafico2Plot() 
+  })
   
   output$sumario2 <- renderPrint({
     summary(dados[,c(varXInput(),varYInput())])
