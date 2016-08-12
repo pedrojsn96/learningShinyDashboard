@@ -37,7 +37,7 @@ dashboardPage(
                                            choices = c("Pontos" = "pontos")))
              ),
              tabBox(width=12,
-                    id = "tabset1", height = "250px",
+                    id = "tabset1",
                     tabPanel("Grafico",
                              conditionalPanel("input.qtdVar == 1",
                                               plotOutput("grafico1Out")),
