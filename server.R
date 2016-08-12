@@ -19,12 +19,18 @@ server <- function(input, output) {
   
   grafico1Plot <- reactive({
     if(input$qtdVar == 1){
-      p <- ggplot(data = dados, aes(x=dados[,varInput()]))
       if(input$grafico1 == "barras"){
+        p <- ggplot(data = dados, aes(x=dados[,varInput()]))
         print(
           p + geom_histogram(alpha =.4, fill ="blue", color="black", binwidth=.5) + labs(title=varInput(), x="Numeros", y="Frequencia") 
           )
-        
+      }
+      if(input$grafico1 == "pizza"){
+        pie <- ggplot(dados, aes(x = "", fill = factor(dados[,varInput()]))) +
+          geom_bar(width = 1)
+        print(
+          pie + coord_polar(theta = "y") + xlab("") + ylab("")+labs(title=varInput(), fill="Lengenda")
+        )
       }
     }
   })
