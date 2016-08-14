@@ -11,9 +11,8 @@ dashboardPage(
     sidebarMenu(
       menuItem("Variaveis",tabName = "Variaveis", icon= icon("dashboard"),
                collapsible= 
-                 radioButtons("qtdVar","Quantidade de Variaveis:",
-                              c("Uma" = 1,
-                                "Duas"= 2 ), selected = 1))
+                 numericInput("qtdVar", 
+                              label = "Quantidade de Variaveis:", value = 1, min = 1,max = 2))
     )
   ),
   dashboardBody(
